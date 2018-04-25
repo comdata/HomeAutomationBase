@@ -32,12 +32,7 @@ pipeline {
 	//		sh 'cd /root/git && cd HomeAutomationZWave && mvn -DskipTests install && cd ..'
 		    }
 		}
-		stage('Build-Parent') { 
-			steps {
-					sh 'mvn -T 1C -N install'
-			}
-		}
-		
+
 		stage('Build') { 
 			steps {
 				sh 'mvn -T 1C -B clean install'
