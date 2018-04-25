@@ -5,7 +5,7 @@
 	<groupId>cm.homeautomation</groupId>
 	<artifactId>HomeAutomationBase</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<distributionManagement>
 		<repository>
