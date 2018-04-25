@@ -179,14 +179,11 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
 		<resources>
 			<resource>
-				<directory>src</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-					<exclude>test/**</exclude>
-				</excludes>
+				<directory>src/main/java</directory>
 			</resource>
 		</resources>
 		<plugins>
