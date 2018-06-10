@@ -26,39 +26,39 @@ import java.net.Socket;
  */
 public class PanasonicTVBinding {
 
-
 	/**
 	 * Listening port of the TV
 	 */
 	private final int tvPort = 55000;
 
 	public PanasonicTVBinding() {
+		// nothing to do here
 	}
 
 	public boolean checkAlive(String tvIp) {
-		boolean alive=false;
-		
+		boolean alive = false;
+
 		int sendCommandStatus;
 		try {
 			sendCommandStatus = sendCommand(tvIp, "DUMMY");
-			
-			if (sendCommandStatus==200) {
-				alive=true;
+
+			if (sendCommandStatus == 200) {
+				alive = true;
 			}
-			
-			System.out.println("Alive Status:" +sendCommandStatus);
+
+			System.out.println("Alive Status:" + sendCommandStatus);
 
 		} catch (TVNotReachableException e) {
 		}
-		
+
 		return alive;
 	}
-	
+
 	/**
 	 * This methods sends the command to the TV
 	 * 
 	 * @return HTTP response code from the TV (should be 200)
-	 * @throws TVNotReachableException 
+	 * @throws TVNotReachableException
 	 */
 	public int sendCommand(String tvIp, String command) throws TVNotReachableException {
 		final String soaprequest_skeleton = "<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">"
@@ -69,33 +69,23 @@ public class PanasonicTVBinding {
 		if (command.toUpperCase().startsWith("HDMI")) {
 			soaprequest = String.format(soaprequest_skeleton, command);
 		} else {
-			soaprequest = String.format(soaprequest_skeleton, command
-					+ "-ONOFF");
+			soaprequest = String.format(soaprequest_skeleton, command + "-ONOFF");
 		}
-
 
 		if ((tvIp == null) || tvIp.isEmpty()) {
 			return 0;
 		}
-
-		try {
-			Socket client = new Socket(tvIp, tvPort);
-
-			BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(
-					client.getOutputStream(), "UTF8"));
+		
+		try (Socket client = new Socket(tvIp, tvPort);
+				BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(client.getOutputStream(), "UTF8"));) {
 
 			String header = "POST /nrc/control_0/ HTTP/1.1\r\n";
 			header = header + "Host: " + tvIp + ":" + tvPort + "\r\n";
-			header = header
-					+ "SOAPACTION: \"urn:panasonic-com:service:p00NetworkControl:1#X_SendKey\"\r\n";
+			header = header + "SOAPACTION: \"urn:panasonic-com:service:p00NetworkControl:1#X_SendKey\"\r\n";
 			header = header + "Content-Type: text/xml; charset=\"utf-8\"\r\n";
-			header = header + "Content-Length: " + soaprequest.length()
-					+ "\r\n";
+			header = header + "Content-Length: " + soaprequest.length() + "\r\n";
 			header = header + "\r\n";
 
-			String request = header + soaprequest;
-
-		
 			wr.write(header);
 			wr.write(soaprequest);
 
@@ -103,24 +93,23 @@ public class PanasonicTVBinding {
 
 			InputStream inFromServer = client.getInputStream();
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					inFromServer));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(inFromServer));
 
 			String response = reader.readLine();
 
 			client.close();
 
-			System.out.println("TV Response from " + tvIp + ": " + response);
+			// System.out.println("TV Response from " + tvIp + ": " + response);
 
 			return Integer.parseInt(response.split(" ")[1]);
 		} catch (IOException e) {
-			System.out.println("Exception during communication to the TV: "
-					+ e.getStackTrace());
-			
+			// System.out.println("Exception during communication to the TV: " +
+			// e.getStackTrace());
+
 			throw new TVNotReachableException();
 		} catch (Exception e) {
-			System.out.println("Exception in binding during execution of command: "
-					+ e.getStackTrace());
+			// System.out.println("Exception in binding during execution of command: " +
+			// e.getStackTrace());
 			throw new TVNotReachableException();
 		}
 	}
