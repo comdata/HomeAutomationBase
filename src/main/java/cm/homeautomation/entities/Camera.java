@@ -33,6 +33,8 @@ public class Camera {
 	@XmlTransient
 	@JsonIgnore
 	private byte[] imageSnapshot;
+	
+	private boolean enabled=true;
 
 	public String getCameraName() {
 		return cameraName;
@@ -85,6 +87,14 @@ public class Camera {
 
 	public void setImageSnapshot(byte[] imageSnapshot) {
 		this.imageSnapshot = imageSnapshot;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 }
