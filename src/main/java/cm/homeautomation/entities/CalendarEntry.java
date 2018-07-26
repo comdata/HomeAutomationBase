@@ -6,6 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Calendar entries for upcoming events
+ * 
+ * @author christoph
+ *
+ */
 @Entity
 @XmlRootElement
 public class CalendarEntry {
@@ -23,6 +29,7 @@ public class CalendarEntry {
 	private String transparent;
 	
 	public  CalendarEntry() {
+		// nothing to be done here
 		
 	}
 
