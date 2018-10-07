@@ -41,6 +41,7 @@ public class Room {
 	@Column(name="VISIBLE")
 	private boolean visible;
 	
+	@Column(name="SORT_ORDER")
 	private int sortOrder=0;
 	
 	public String getRoomName() {
