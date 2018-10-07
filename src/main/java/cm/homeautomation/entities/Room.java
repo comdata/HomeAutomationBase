@@ -41,6 +41,8 @@ public class Room {
 	@Column(name="VISIBLE")
 	private boolean visible;
 	
+	private int sortOrder=0;
+	
 	public String getRoomName() {
 		return roomName;
 	}
@@ -108,5 +110,13 @@ public class Room {
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+	}
+
+	public int getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(int sortOrder) {
+		this.sortOrder = sortOrder;
 	}
 }
