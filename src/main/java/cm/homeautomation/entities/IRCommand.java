@@ -19,6 +19,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 public class IRCommand {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EdmIgnore
 	private Long id;
 
 	private String type;
@@ -34,6 +35,7 @@ public class IRCommand {
 	@EdmIgnore
 	private IRCommand followUpCommand;
 
+	@EdmIgnore
 	@ElementCollection
 	@CollectionTable(name = "IRCOMMANDVALUES", joinColumns=@JoinColumn(name="IRCOMMAND_ID"))
 	@Column(name="codeValues")

@@ -37,7 +37,7 @@
 		<class>cm.homeautomation.entities.DashButtonRange</class>
 		<class>cm.homeautomation.entities.DashButton</class>
 		<class>cm.homeautomation.entities.ScriptingEntity</class>
-		<class>cm.homeautomation.entities.IRCommand</class>
+		<!-- <class>cm.homeautomation.entities.IRCommand</class> -->
 		<class>cm.homeautomation.entities.HAZWaveNode</class>
 		<class>cm.homeautomation.entities.SecurityZone</class>
 		<class>cm.homeautomation.entities.SecurityZoneMember</class>
