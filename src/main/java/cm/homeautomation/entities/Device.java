@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 @Entity
 public class Device {
@@ -20,6 +21,7 @@ public class Device {
 	@JsonBackReference("room")
 	@ManyToOne
 	@JoinColumn(name = "ROOM_ID", nullable=false)
+	@EdmIgnore
 	private Room room;
 	
 	@Column(name="MAC", nullable=false, unique=true)

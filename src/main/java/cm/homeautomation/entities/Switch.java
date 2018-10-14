@@ -63,6 +63,7 @@ public class Switch {
 	@JoinColumn(name = "ROOM_ID")
 	@XmlTransient
 	@JsonIgnore
+	@EdmIgnore
 	private Room room;
 
 	@Column(name = "VISIBLE", nullable = false)
