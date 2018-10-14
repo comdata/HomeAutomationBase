@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 @Entity
 public class Switch {
@@ -42,8 +43,9 @@ public class Switch {
 	@JsonManagedReference("referencedSwitch")
 	private List<Light> lights;
 
-	@JoinColumn(nullable = true)
+	@JoinColumn(nullable = true, referencedColumnName="ID")
 	@OneToOne(optional=true)
+	@EdmIgnore
 	private IRCommand irCommand;
 
 	@Column(name = "SWITCH_SET_URL")
@@ -54,6 +56,7 @@ public class Switch {
 
 	@OneToOne
 	@JoinColumn(name = "SENSOR_ID")
+	@EdmIgnore
 	private Sensor sensor;
 
 	@ManyToOne
