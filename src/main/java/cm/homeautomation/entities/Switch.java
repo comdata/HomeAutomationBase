@@ -43,7 +43,7 @@ public class Switch {
 	private List<Light> lights;
 
 	@JoinColumn(nullable = true)
-	@OneToOne
+	@OneToOne(optional=true)
 	private IRCommand irCommand;
 
 	@Column(name = "SWITCH_SET_URL")

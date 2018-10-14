@@ -30,6 +30,10 @@ public class IRCommand {
 	private long repeatDelay;
 	private String data;
 	
+	@JoinColumn(nullable = true)
+	@OneToOne(optional=true)
+	private Switch irSwitch;
+	
 	@OneToOne(optional=true)
 	@JoinColumn(nullable=true)
 	@EdmIgnore
