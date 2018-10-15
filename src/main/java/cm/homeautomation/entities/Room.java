@@ -39,7 +39,7 @@ public class Room {
 	private List<Light> lights;
 	
 	@Column(name="VISIBLE")
-	private boolean visible;
+	private Boolean visible;
 	
 	@Column(name="SORT_ORDER")
 	private int sortOrder=0;
@@ -106,7 +106,7 @@ public class Room {
 	}
 
 	public boolean isVisible() {
-		return visible;
+		return getVisible();
 	}
 
 	public void setVisible(boolean visible) {
@@ -119,5 +119,13 @@ public class Room {
 
 	public void setSortOrder(int sortOrder) {
 		this.sortOrder = sortOrder;
+	}
+
+	public Boolean getVisible() {
+		return visible;
+	}
+
+	public void setVisible(Boolean visible) {
+		this.visible = visible;
 	}
 }
