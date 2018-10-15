@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 @Entity
 public class WindowBlind {
@@ -27,6 +28,7 @@ public class WindowBlind {
 	@JsonIdentityReference(alwaysAsId = true)
 	@ManyToOne
 	@JoinColumn(name = "ROOM_ID", nullable = false)
+	@EdmIgnore
 	private Room room;
 
 	private String name;

@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 @Entity
 public class Camera {
@@ -23,6 +24,7 @@ public class Camera {
 	@JsonBackReference("room")
 	@ManyToOne
 	@JoinColumn(name = "ROOM_ID", nullable = false)
+	@EdmIgnore
 	private Room room;
 
 	@Column(nullable=false, unique=true)

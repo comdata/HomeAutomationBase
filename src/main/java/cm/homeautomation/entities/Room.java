@@ -1,3 +1,4 @@
+
 package cm.homeautomation.entities;
 
 import java.util.ArrayList;

@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 @Entity
 public class Sensor {
@@ -43,6 +44,7 @@ public class Sensor {
 	@JsonBackReference("room")
 	@ManyToOne
 	@JoinColumn(name = "ROOM_ID")
+	@EdmIgnore
 	private Room room;
 
 	@OneToMany(mappedBy = "sensor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

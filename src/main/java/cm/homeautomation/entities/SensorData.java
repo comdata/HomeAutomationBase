@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlIDREF;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 @Entity
 @Table(indexes = { @Index(name = "sensorId", columnList = "SENSOR_ID, VALIDTHRU") })
@@ -27,7 +28,7 @@ public class SensorData {
 
 	@ManyToOne
 	@JoinColumn(name = "SENSOR_ID", nullable = false)
-
+	@EdmIgnore
 	private Sensor sensor;
 
 	private Date dateTime = new Date();
