@@ -12,10 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
+
 @Entity
+@EdmIgnore
 public class IRCommand {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EdmIgnore
 	private Long id;
 
 	private String type;
@@ -26,10 +30,16 @@ public class IRCommand {
 	private long repeatDelay;
 	private String data;
 	
-	@OneToOne
+	@JoinColumn(nullable = true)
+	@OneToOne(optional=true)
+	private Switch irSwitch;
+	
+	@OneToOne(optional=true)
 	@JoinColumn(nullable=true)
+	@EdmIgnore
 	private IRCommand followUpCommand;
 
+	@EdmIgnore
 	@ElementCollection
 	@CollectionTable(name = "IRCOMMANDVALUES", joinColumns=@JoinColumn(name="IRCOMMAND_ID"))
 	@Column(name="codeValues")

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlID;
 
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
+
 @Entity
 @Cacheable(false)
 public class ScriptingEntity {
@@ -25,6 +27,7 @@ public class ScriptingEntity {
 		EVENTHANDLER, UIACTION
 	}
 	
+	@EdmIgnore
 	private ScriptingType scriptType;
 
 	public String getName() {

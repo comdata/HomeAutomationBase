@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@class")
 @JsonSubTypes({ @JsonSubTypes.Type(value = DimmableLight.class, name = "DimmableLight"),
@@ -38,6 +39,7 @@ public class Light {
 	@JsonBackReference("room")
 	@ManyToOne
 	@JoinColumn(name = "ROOM_ID")
+	@EdmIgnore
 	private Room room;
 
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -45,6 +47,7 @@ public class Light {
 	@JsonBackReference("referencedSwitch")
 	@ManyToOne
 	@JoinColumn(name = "SWITCH_ID")
+	@EdmIgnore
 	private Switch referencedSwitch;
 
 	private String lightGroup;
