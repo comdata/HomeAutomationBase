@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,7 +24,7 @@ public class Package {
 	private static final Map<String, String> carrierMap = createCarrierMap();
 
 	private static Map<String, String> createCarrierMap() {
-		Map<String, String> carrierMap = new HashMap<String, String>();
+		Map<String, String> carrierMap = new HashMap<>();
 		carrierMap.put("ex007", "007EX");
 		carrierMap.put("ten13", "13ten");
 		carrierMap.put("post17", "17PostService");
@@ -323,11 +322,8 @@ public class Package {
 	private String dateModified;
 	
 	@OneToMany(orphanRemoval = true)
-	@JoinColumns({
-			@JoinColumn(updatable = false, insertable = false, name = "carrier", referencedColumnName = "carrier"),
-			@JoinColumn(updatable = false, insertable = false, name = "trackingNumber", referencedColumnName = "trackingNumber"),
-
-	})
+	@JoinColumn(updatable = false, insertable = false, name = "carrier", referencedColumnName = "carrier")
+	@JoinColumn(updatable = false, insertable = false, name = "trackingNumber", referencedColumnName = "trackingNumber")
 	@JsonManagedReference("package")
 	private List<PackageHistory> packageHistory;
 
@@ -390,7 +386,7 @@ public class Package {
 
 	public List<PackageHistory> getPackageHistory() {
 		if (packageHistory == null) {
-			packageHistory = new ArrayList<PackageHistory>();
+			packageHistory = new ArrayList<>();
 		}
 		return packageHistory;
 	}
