@@ -2,9 +2,10 @@ package cm.homeautomation.sensors.base;
 
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+
 import se.hirt.w1.impl.DHTHygrometer;
 import se.hirt.w1.impl.DHTSensor;
-import se.hirt.w1.impl.DHTTemperature;
 import se.hirt.w1.impl.DHTType;
 
 public class HumiditySensor implements TechnicalSensor {
@@ -23,8 +24,7 @@ public class HumiditySensor implements TechnicalSensor {
 			value = dhtTemperature.getValue();
 			return value.toString();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LogManager.getLogger(this.getClass()).error("IO Exception",e );
 		}
 		return null;
 		
@@ -32,7 +32,6 @@ public class HumiditySensor implements TechnicalSensor {
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
