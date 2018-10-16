@@ -2,12 +2,7 @@ package cm.homeautomation.entities;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Date;
 
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
-import javax.persistence.Entity;
-import javax.persistence.SqlResultSetMapping;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
