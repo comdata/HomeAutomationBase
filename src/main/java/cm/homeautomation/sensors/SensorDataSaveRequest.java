@@ -1,7 +1,5 @@
 package cm.homeautomation.sensors;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 import cm.homeautomation.entities.SensorData;
 
 public class SensorDataSaveRequest extends JSONSensorDataBase {
