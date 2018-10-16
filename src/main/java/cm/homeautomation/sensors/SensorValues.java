@@ -17,7 +17,7 @@ public class SensorValues {
 
 	public List<SensorValue> getValues() {
 		if (values==null) {
-			values=new ArrayList<SensorValue>();
+			values=new ArrayList<>();
 		}
 		return values;
 	}
