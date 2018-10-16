@@ -42,26 +42,25 @@ pipeline {
 
 		}
 	
-	    stage('Deploy') {
-	       parallel {
-	      		 stage('JUnit') {
-					steps {
-						junit '**/target/surefire-reports/**/*.xml'  
-		            }
-				}
-				stage('Deploy') {
-	        		steps {
-	        			sh 'mvn deploy:deploy-file -Dfile=target/HomeAutomationBase-0.0.1-SNAPSHOT.jar -DpomFile=pom.xml -DrepositoryId=archiva.snapshots -Durl=http://jenkins:8081/repository/snapshots'
-	   				}
-	   			}
+//	    stage('Deploy') {
+//	       parallel {
+//	      		 stage('JUnit') {
+//					steps {
+//						junit '**/target/surefire-reports/**/*.xml'  
+//		            }
+//				}
+//				stage('Deploy') {
+//	        		steps {
+//	        			sh 'mvn deploy:deploy-file -Dfile=target/HomeAutomationBase-0.0.1-SNAPSHOT.jar -DpomFile=pom.xml -DrepositoryId=archiva.snapshots -Durl=http://jenkins:8081/repository/snapshots'
+//	   				}
+//	   			}
 //				stage('Archive') {
 //	   			    steps {
 //	   			        archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
 //	   			    	archiveArtifacts artifacts: '**/pom.xml', fingerprint: true
 //	   			    }	   			    
-//	   			}
-	  
-	   		}	
-	    }
+//	   			}	  
+//	   		}	
+//	    }
     }
 }
