@@ -35,7 +35,9 @@ pipeline {
 
 		stage('Build') { 
 			steps {
-				sh 'mvn -T 1C -B clean install'
+				withMaven() {
+					sh 'mvn -T 1C -B clean deploy'
+				}
             }
 
 		}
