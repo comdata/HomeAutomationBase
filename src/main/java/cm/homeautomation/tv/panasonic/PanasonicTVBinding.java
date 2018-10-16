@@ -11,11 +11,12 @@ package cm.homeautomation.tv.panasonic;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+
+import org.apache.logging.log4j.LogManager;
 
 /**
  * This class in mainly used for receiving internal command and to send them to
@@ -29,7 +30,7 @@ public class PanasonicTVBinding {
 	/**
 	 * Listening port of the TV
 	 */
-	private final int tvPort = 55000;
+	private static final int TV_PORT = 55000;
 
 	public PanasonicTVBinding() {
 		// nothing to do here
@@ -46,9 +47,8 @@ public class PanasonicTVBinding {
 				alive = true;
 			}
 
-			System.out.println("Alive Status:" + sendCommandStatus);
-
 		} catch (TVNotReachableException e) {
+			LogManager.getLogger(this.getClass()).error("TVNotReachableException",e );
 		}
 
 		return alive;
@@ -76,11 +76,11 @@ public class PanasonicTVBinding {
 			return 0;
 		}
 		
-		try (Socket client = new Socket(tvIp, tvPort);
+		try (Socket client = new Socket(tvIp, TV_PORT);
 				BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(client.getOutputStream(), "UTF8"));) {
 
 			String header = "POST /nrc/control_0/ HTTP/1.1\r\n";
-			header = header + "Host: " + tvIp + ":" + tvPort + "\r\n";
+			header = header + "Host: " + tvIp + ":" + TV_PORT + "\r\n";
 			header = header + "SOAPACTION: \"urn:panasonic-com:service:p00NetworkControl:1#X_SendKey\"\r\n";
 			header = header + "Content-Type: text/xml; charset=\"utf-8\"\r\n";
 			header = header + "Content-Length: " + soaprequest.length() + "\r\n";
@@ -97,20 +97,9 @@ public class PanasonicTVBinding {
 
 			String response = reader.readLine();
 
-			client.close();
-
-			// System.out.println("TV Response from " + tvIp + ": " + response);
-
 			return Integer.parseInt(response.split(" ")[1]);
-		} catch (IOException e) {
-			// System.out.println("Exception during communication to the TV: " +
-			// e.getStackTrace());
-
-			throw new TVNotReachableException();
 		} catch (Exception e) {
-			// System.out.println("Exception in binding during execution of command: " +
-			// e.getStackTrace());
-			throw new TVNotReachableException();
+throw new TVNotReachableException();
 		}
 	}
 }
