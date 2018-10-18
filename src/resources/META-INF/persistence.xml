@@ -44,6 +44,7 @@
 		<class>cm.homeautomation.entities.HAZWaveNode</class>
 		<class>cm.homeautomation.entities.SecurityZone</class>
 		<class>cm.homeautomation.entities.SecurityZoneMember</class>
+		<class>cm.homeautomation.entities.FHEMDevice</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url"
