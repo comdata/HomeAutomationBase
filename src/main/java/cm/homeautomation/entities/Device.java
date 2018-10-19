@@ -1,5 +1,7 @@
 package cm.homeautomation.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
@@ -29,6 +32,10 @@ public class Device {
 	
 	@Column(name="NAME", nullable=false)
 	private String name;
+	
+	@OneToMany
+	@EdmIgnore
+	private List<Sensor> sensors;
 
 	public Long getId() {
 		return id;
@@ -60,5 +67,13 @@ public class Device {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Sensor> getSensors() {
+		return sensors;
+	}
+
+	public void setSensors(List<Sensor> sensors) {
+		this.sensors = sensors;
 	}
 }
