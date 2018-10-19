@@ -1,6 +1,8 @@
 package cm.homeautomation.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,10 +13,13 @@ public class FHEMDevice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Enumerated(EnumType.STRING)
 	private FHEMDeviceType deviceType;
 	private Long referencedId;
 	private String name;
 	
+
 	public enum FHEMDeviceType{
 		WINDOWBLIND, WINDOW, SWITCH, DEVICE
 	}
