@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
+
 @Entity
 public class FHEMDevice {
 
@@ -15,6 +17,7 @@ public class FHEMDevice {
 	private Long id;
 	
 	@Enumerated(EnumType.STRING)
+	@EdmIgnore
 	private FHEMDeviceType deviceType;
 	private Long referencedId;
 	private String name;
