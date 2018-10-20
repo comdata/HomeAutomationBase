@@ -1,6 +1,7 @@
 package cm.homeautomation.entities;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +36,7 @@ public class Device {
 	
 	@OneToMany
 	@EdmIgnore
-	private List<Sensor> sensors;
+	private Map<String, Sensor> sensors;
 
 	public Long getId() {
 		return id;
@@ -69,11 +70,11 @@ public class Device {
 		this.name = name;
 	}
 
-	public List<Sensor> getSensors() {
+	public Map<String, Sensor> getSensors() {
 		return sensors;
 	}
 
-	public void setSensors(List<Sensor> sensors) {
+	public void setSensors(Map<String, Sensor> sensors) {
 		this.sensors = sensors;
 	}
 }
