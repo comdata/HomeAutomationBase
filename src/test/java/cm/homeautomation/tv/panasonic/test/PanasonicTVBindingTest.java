@@ -2,14 +2,16 @@ package cm.homeautomation.tv.panasonic.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import cm.homeautomation.tv.panasonic.PanasonicTVBinding;
 import cm.homeautomation.tv.panasonic.test.TVServer;
+import mockit.Mocked;
 
 public class PanasonicTVBindingTest {
 
@@ -17,6 +19,8 @@ public class PanasonicTVBindingTest {
 	private final String tvIp = "127.0.0.1";
 	private TVServer tvServer;
 
+	@Mocked TVServer mockTvServer;
+	
 	@Before
 	public void setup() {
 
@@ -31,6 +35,12 @@ public class PanasonicTVBindingTest {
 		}
 	}
 
+	
+	@Test
+	public void testMockedServer() {
+		assertNotNull(mockTvServer);
+	}
+	
 	@Test
 	public void testCheckAlive() throws Exception {
 		tvServer = new TVServer(tvPort);
