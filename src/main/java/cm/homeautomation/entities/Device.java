@@ -1,6 +1,5 @@
 package cm.homeautomation.entities;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.persistence.Column;
