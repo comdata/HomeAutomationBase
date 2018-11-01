@@ -1,11 +1,12 @@
 package cm.homeautomation.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class PackageHistoryPK {
+public class PackageHistoryPK implements Serializable {
 	/**
 	 * 
 	 */

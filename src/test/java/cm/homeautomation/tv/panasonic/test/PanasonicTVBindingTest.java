@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cm.homeautomation.tv.panasonic.PanasonicTVBinding;
-import cm.homeautomation.tv.panasonic.test.TVServer;
 
 public class PanasonicTVBindingTest {
 
@@ -17,6 +16,7 @@ public class PanasonicTVBindingTest {
 	private final String tvIp = "127.0.0.1";
 	private TVServer tvServer;
 
+	
 	@Before
 	public void setup() {
 
@@ -31,6 +31,7 @@ public class PanasonicTVBindingTest {
 		}
 	}
 
+	
 	@Test
 	public void testCheckAlive() throws Exception {
 		tvServer = new TVServer(tvPort);
