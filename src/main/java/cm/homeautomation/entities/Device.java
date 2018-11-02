@@ -23,7 +23,7 @@ public class Device {
 	
 	@JsonBackReference("room")
 	@ManyToOne
-	@JoinColumn(name = "ROOM_ID", nullable=false)
+	@JoinColumn(name = "ROOM_ID", nullable=true)
 	@EdmIgnore
 	private Room room;
 	
