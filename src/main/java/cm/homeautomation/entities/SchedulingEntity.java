@@ -13,7 +13,9 @@ public class SchedulingEntity {
 	private Long id;
 
 	private String pattern;
-	private String taskAction;
+	private String clazz;
+	private String method;
+	private String arguments;
 
 	public String getPattern() {
 		return pattern;
@@ -23,11 +25,29 @@ public class SchedulingEntity {
 		this.pattern = pattern;
 	}
 
-	public String getTaskAction() {
-		return taskAction;
+	public String getClazz() {
+		return clazz;
 	}
 
-	public void setTaskAction(String taskAction) {
-		this.taskAction = taskAction;
+	public void setClazz(String clazz) {
+		this.clazz = clazz;
 	}
+
+	public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
+	}
+
+	public String getArguments() {
+		return arguments;
+	}
+
+	public void setArguments(String arguments) {
+		this.arguments = arguments;
+	}
+
+
 }
