@@ -5,16 +5,11 @@ import java.util.List;
 
 public class Sensors {
 
-	private List<TechnicalSensor> sensors;
+	private List<TechnicalSensor> sensorList;
 	private static Sensors instance;
 	
 	public Sensors() {
-		
-		
-		/*TechnicalSensor tempSensor=new TemperatureSensor();
-		this.getSensors().add(tempSensor);
-		TechnicalSensor humiditySensor=new HumiditySensor();
-		this.getSensors().add(humiditySensor);*/
+		// do nothing
 	}
 	
 	public static Sensors getInstance() {
@@ -26,13 +21,13 @@ public class Sensors {
 	}
 	
 	public List<TechnicalSensor> getSensors() {
-		if(sensors==null) {
-			sensors=new ArrayList<TechnicalSensor>();
+		if(sensorList==null) {
+			sensorList=new ArrayList<>();
 		}
-		return sensors;
+		return sensorList;
 	}
 
 	public void setSensors(List<TechnicalSensor> sensors) {
-		this.sensors = sensors;
+		this.sensorList = sensors;
 	}
 }
