@@ -1,3 +1,4 @@
+
 package cm.homeautomation.entities;
 
 import javax.persistence.Entity;
@@ -28,6 +29,7 @@ public class FHEMDevice {
 	}
 
 	public FHEMDevice() {
+		// do nothing
 	}
 
 	public void setId(Long id) {
