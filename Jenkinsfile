@@ -37,6 +37,7 @@ pipeline {
 			steps {
 				withMaven() {
 					sh 'mvn -T 1C -B clean deploy'
+					sh 'mvn org.pitest:pitest-maven:mutationCoverage -DtimeoutConstant=8000'
 				}
             }
 
