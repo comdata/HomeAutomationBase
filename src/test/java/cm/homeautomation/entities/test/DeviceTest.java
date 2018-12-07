@@ -4,8 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import javax.persistence.EntityManager;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import cm.homeautomation.db.EntityManagerService;
 import cm.homeautomation.entities.Device;
@@ -13,16 +13,21 @@ import cm.homeautomation.entities.Room;
 
 public class DeviceTest {
 
+	private static final String TEST_DEVICE_ROOM = "Test Device Room";
 	private EntityManager em;
 	private Room room;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		em = EntityManagerService.getNewManager();
 		em.getTransaction().begin();
 
+		em.createQuery("delete from Device").executeUpdate();
+		em.createQuery("delete from Room r where r.roomName=:roomName").setParameter("roomName", TEST_DEVICE_ROOM)
+				.executeUpdate();
+		
 		room = new Room();
-		room.setRoomName("Test Device Room");
+		room.setRoomName(TEST_DEVICE_ROOM);
 
 		em.persist(room);
 		em.getTransaction().commit();
