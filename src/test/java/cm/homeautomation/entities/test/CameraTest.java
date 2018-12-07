@@ -5,27 +5,32 @@ import static org.junit.Assert.assertTrue;
 import javax.persistence.EntityManager;
 import javax.persistence.RollbackException;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import cm.homeautomation.db.EntityManagerService;
 import cm.homeautomation.entities.Camera;
-import cm.homeautomation.entities.Device;
 import cm.homeautomation.entities.Room;
-import cm.homeautomation.entities.WindowBlind;
 
 public class CameraTest {
 
+	private static final String TEST_CAMERA_ROOM = "Test Camera Room";
 	private EntityManager em;
 	private Room room;
 
-	@Before
+	@BeforeEach
 	public void setup() {
+
 		em = EntityManagerService.getNewManager();
 		em.getTransaction().begin();
 
+		em.createQuery("delete from Camera").executeUpdate();
+		em.createQuery("delete from Room r where r.roomName=:roomName").setParameter("roomName", TEST_CAMERA_ROOM)
+				.executeUpdate();
+
 		room = new Room();
-		room.setRoomName("Test Camera Room");
+		room.setRoomName(TEST_CAMERA_ROOM);
 
 		em.persist(room);
 		em.getTransaction().commit();
@@ -43,18 +48,20 @@ public class CameraTest {
 		em.persist(camera);
 
 		em.getTransaction().commit();
-		
+
 		assertTrue("Id: " + camera.getId(), camera.getId() != null);
 	}
-	
-	@Test(expected=RollbackException.class)
-	public void testCameraFailsWithoutRoom() throws Exception {
-		em = EntityManagerService.getNewManager();
-		em.getTransaction().begin();
-		Camera camera = new Camera();
 
-		camera.setCameraName("Testblind");
-		em.persist(camera);
-		em.getTransaction().commit();		
+	@Test
+	public void testCameraFailsWithoutRoom() throws Exception {
+		Assertions.assertThrows(RollbackException.class, () -> {
+			em = EntityManagerService.getNewManager();
+			em.getTransaction().begin();
+			Camera camera = new Camera();
+
+			camera.setCameraName("Testblind");
+			em.persist(camera);
+			em.getTransaction().commit();
+		});
 	}
 }
