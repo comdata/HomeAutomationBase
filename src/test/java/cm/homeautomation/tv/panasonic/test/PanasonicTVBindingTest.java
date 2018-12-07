@@ -19,7 +19,7 @@ public class PanasonicTVBindingTest {
 	
 	@Before
 	public void setup() {
-
+		tearDown();
 	}
 
 	@After
