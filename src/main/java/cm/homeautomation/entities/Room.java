@@ -132,4 +132,12 @@ public class Room {
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 	}
+
+	public Map<String, String> getRoomProperties() {
+		return roomProperties;
+	}
+
+	public void setRoomProperties(Map<String, String> roomProperties) {
+		this.roomProperties = roomProperties;
+	}
 }
