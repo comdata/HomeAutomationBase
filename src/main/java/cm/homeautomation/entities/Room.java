@@ -3,6 +3,7 @@ package cm.homeautomation.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,6 +46,8 @@ public class Room {
 	@Column(name="SORT_ORDER")
 	private int sortOrder=0;
 	
+	private Map<String, String> roomProperties;
+	
 	public String getRoomName() {
 		return roomName;
 	}
@@ -55,7 +58,7 @@ public class Room {
 
 	public List<Sensor> getSensors() {
 		if (sensors==null) {
-			sensors=new ArrayList<Sensor>();
+			sensors=new ArrayList<>();
 		}
 		return sensors;
 	}
