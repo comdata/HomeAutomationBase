@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,6 +48,9 @@ public class Room {
 	@Column(name="SORT_ORDER")
 	private int sortOrder=0;
 	
+	@ElementCollection 
+	@CollectionTable(
+	        name="ROOM_PROPERTIES")
 	private Map<String, String> roomProperties;
 	
 	public String getRoomName() {
