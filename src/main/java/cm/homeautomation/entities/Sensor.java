@@ -35,6 +35,9 @@ public class Sensor {
 	private String sensorTechnicalType;
 	private String sensorPosition = "LOCAL";
 	private int deadbandPercent = 0;
+	
+	private String minValue;
+	private String maxValue;
 
 	@Column(name = "SHOWDATA")
 	private boolean showData;
@@ -123,6 +126,22 @@ public class Sensor {
 
 	public void setShowData(boolean showData) {
 		this.showData = showData;
+	}
+
+	public String getMinValue() {
+		return minValue;
+	}
+
+	public void setMinValue(String minValue) {
+		this.minValue = minValue;
+	}
+
+	public String getMaxValue() {
+		return maxValue;
+	}
+
+	public void setMaxValue(String maxValue) {
+		this.maxValue = maxValue;
 	}
 
 }
