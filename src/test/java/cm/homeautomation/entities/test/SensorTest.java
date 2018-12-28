@@ -5,8 +5,9 @@ import static org.junit.Assert.assertTrue;
 import javax.persistence.EntityManager;
 import javax.persistence.RollbackException;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import cm.homeautomation.db.EntityManagerService;
 import cm.homeautomation.entities.Room;
@@ -16,7 +17,7 @@ public class SensorTest {
 	private EntityManager em;
 	private Room room;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		em = EntityManagerService.getNewManager();
 		em.getTransaction().begin();
@@ -43,14 +44,15 @@ public class SensorTest {
 		assertTrue("Id: " + sensor.getId(), sensor.getId() != null);
 	}
 
-	@Test(expected = RollbackException.class)
+	@Test
 	public void testCreateEmptySensor() {
-
-		em.getTransaction().begin();
-		Sensor sensor = new Sensor();
-		sensor.setRoom(room);
-		em.persist(sensor);
-		em.getTransaction().commit();
+		Assertions.assertThrows(RollbackException.class, () -> {
+			em.getTransaction().begin();
+			Sensor sensor = new Sensor();
+			sensor.setRoom(room);
+			em.persist(sensor);
+			em.getTransaction().commit();
+		});
 
 	}
 }
