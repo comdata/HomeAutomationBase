@@ -36,8 +36,8 @@ public class Sensor {
 	private String sensorPosition = "LOCAL";
 	private int deadbandPercent = 0;
 	
-	private String minValue;
-	private String maxValue;
+	private String minValue=null;
+	private String maxValue=null;
 
 	@Column(name = "SHOWDATA")
 	private boolean showData;
