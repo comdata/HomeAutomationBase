@@ -36,7 +36,9 @@ public class Sensor {
 	private String sensorPosition = "LOCAL";
 	private int deadbandPercent = 0;
 	
+	@Column(name = "MINVALUE", nullable = true)
 	private String minValue=null;
+	@Column(name = "MAXVALUE", nullable = true)
 	private String maxValue=null;
 
 	@Column(name = "SHOWDATA")
