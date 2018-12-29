@@ -3,9 +3,7 @@ package cm.homeautomation.sensors;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-//@JsonTypeInfo(use=JsonTypeInfo.Id.MINIMAL_CLASS, include=JsonTypeInfo.As.PROPERTY, property="@c")
 @JsonInclude (JsonInclude.Include.USE_DEFAULTS)
 @XmlRootElement
 public class ActorMessage {
@@ -13,6 +11,7 @@ public class ActorMessage {
 	private String houseCode;
 	private String switchNo;
 	private String status;
+	private Long id;
 
 	public String getMessageType() {
 		return messageType;
@@ -37,6 +36,13 @@ public class ActorMessage {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public Long getId() {
+		return id;
 	}
 
 }
