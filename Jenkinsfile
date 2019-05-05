@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3.5.4-jdk-8-alpine' 
+            image 'maven:3.6.1-jdk-8-alpine' 
             args ' -v $HOME/.m2:/root/.m2 -v /root/.ssh:/root/.ssh' 
         }
     }
@@ -13,8 +13,8 @@ pipeline {
 			sh 'mysql_install_db --user=mysql --rpm'
 			sh '/usr/bin/mysqld_safe &'
 			sh 'sleep 5' // for mysql to startup
-			sh 'mysql --protocol=TCP -u root -e "CREATE DATABASE HA;"'
-			sh 'mysql --protocol=TCP -u root HA < log4j.sql'
+			sh 'mysql -u root -e "CREATE DATABASE HA;"'
+			sh 'mysql -u root HA < log4j.sql'
 		    } 
 		}
 	
