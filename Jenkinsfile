@@ -14,8 +14,8 @@ pipeline {
 			sh 'mysql_install_db --user=mysql --rpm'
 			sh '/usr/bin/mysqld_safe &'
 			sh 'sleep 5' // for mysql to startup
-			sh 'mysql -u root -e "CREATE DATABASE HA;"'
-			sh 'mysql -u root HA < log4j.sql'
+			//sh 'mysql -u root -e "CREATE DATABASE HA;"'
+			//sh 'mysql -u root HA < log4j.sql'
 		    } 
 		}
 	
@@ -37,8 +37,8 @@ pipeline {
 		stage('Build') { 
 			steps {
 				withMaven() {
-					sh 'mvn -T 1C -B clean deploy'
-					sh 'mvn org.pitest:pitest-maven:mutationCoverage -DtimeoutConstant=8000'
+					sh 'mvn -T 1C -B -DskipTests clean deploy'
+					//sh 'mvn org.pitest:pitest-maven:mutationCoverage -DtimeoutConstant=8000'
 				}
             }
 
