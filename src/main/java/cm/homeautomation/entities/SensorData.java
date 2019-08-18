@@ -17,7 +17,7 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 @Table(indexes = { @Index(name = "sensorId", columnList = "SENSOR_ID, VALIDTHRU") })
 public class SensorData {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String value;
