@@ -10,6 +10,7 @@ import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
@@ -17,7 +18,8 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 @Table(indexes = { @Index(name = "sensorId", columnList = "SENSOR_ID, VALIDTHRU") })
 public class SensorData {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(generator = "SensorData")
+	@TableGenerator(name = "SensorData", table = "SEQUENCE", pkColumnName = "SEQ_NAME", valueColumnName = "SEQ_COUNT", pkColumnValue = "SENSOR_DATA")
 	private Long id;
 
 	private String value;
