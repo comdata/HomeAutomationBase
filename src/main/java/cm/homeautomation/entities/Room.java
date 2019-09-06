@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlIDREF;
 
@@ -50,7 +51,9 @@ public class Room {
 	
 	@ElementCollection 
 	@CollectionTable(
-	        name="ROOM_PROPERTIES")
+	        name="ROOM_PROPERTIES", 
+	        joinColumns=@JoinColumn())
+	@Column(name="ROOM_PROPERTY")
 	private Map<String, String> roomProperties;
 	
 	public String getRoomName() {
