@@ -91,7 +91,7 @@ public class Room {
 
 	public List<Device> getDevices() {
 		if (devices==null) {
-			devices=new ArrayList<Device>();
+			devices=new ArrayList<>();
 		}
 		
 		return devices;
@@ -104,7 +104,7 @@ public class Room {
 	@XmlIDREF
 	public List<Light> getLights() {
 		if (lights==null) {
-			lights=new ArrayList<Light>();
+			lights=new ArrayList<>();
 		}
 		
 		return lights;
