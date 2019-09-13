@@ -1,13 +1,8 @@
 package cm.homeautomation.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Entity;
 
+@Entity
 public class DimmableColorLight extends DimmableLight {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
 }
