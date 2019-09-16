@@ -67,7 +67,7 @@ public class Switch {
 	private Room room;
 
 	@Column(name = "VISIBLE", nullable = false)
-	private final boolean visible = true;
+	private boolean visible = true;
 
 	@Transient
 	private boolean switchState;
@@ -231,6 +231,10 @@ public class Switch {
 
 	public void setTargetStatus(final String targetStatus) {
 		this.targetStatus = targetStatus;
+	}
+	
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 
 }
