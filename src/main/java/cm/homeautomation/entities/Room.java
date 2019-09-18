@@ -3,17 +3,13 @@ package cm.homeautomation.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlIDREF;
 
@@ -49,12 +45,8 @@ public class Room {
 	@Column(name="SORT_ORDER")
 	private int sortOrder=0;
 	
-	@ElementCollection 
-	@CollectionTable(
-	        name="ROOM_PROPERTIES", 
-	        joinColumns=@JoinColumn())
-	@Column(name="ROOM_PROPERTY")
-	private Map<String, String> roomProperties;
+	@OneToMany(mappedBy="room", cascade=CascadeType.ALL)
+	private List<RoomProperty> roomProperty;
 	
 	public String getRoomName() {
 		return roomName;
@@ -141,11 +133,14 @@ public class Room {
 		this.visible = visible;
 	}
 
-	public Map<String, String> getRoomProperties() {
-		return roomProperties;
+	@XmlIDREF
+	public List<RoomProperty> getRoomProperty() {
+		return roomProperty;
 	}
 
-	public void setRoomProperties(Map<String, String> roomProperties) {
-		this.roomProperties = roomProperties;
+	@XmlIDREF
+	public void setRoomProperty(List<RoomProperty> roomProperty) {
+		this.roomProperty = roomProperty;
 	}
+
 }
