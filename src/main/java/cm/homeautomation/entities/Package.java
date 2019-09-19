@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -320,10 +321,11 @@ public class Package {
 	private String packageName;
 	private String dateAdded;
 	private String dateModified;
-	
+
 	@OneToMany(orphanRemoval = true)
-	@JoinColumn(updatable = false, insertable = false, name = "carrier", referencedColumnName = "carrier")
-	@JoinColumn(updatable = false, insertable = false, name = "trackingNumber", referencedColumnName = "trackingNumber")
+	@JoinColumns({
+			@JoinColumn(updatable = false, insertable = false, name = "carrier", referencedColumnName = "carrier"),
+			@JoinColumn(updatable = false, insertable = false, name = "trackingNumber", referencedColumnName = "trackingNumber") })
 	@JsonManagedReference("package")
 	private List<PackageHistory> packageHistory;
 
@@ -372,7 +374,7 @@ public class Package {
 
 	@Transient
 	public void setCarrierName(String carrierName) {
-		this.carrierName=carrierName;
+		this.carrierName = carrierName;
 	}
 
 	public void setDelivered(boolean delivered) {
