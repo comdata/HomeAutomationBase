@@ -60,6 +60,7 @@
 			<property name="eclipselink.ddl-generation.output-mode"
 				value="database" />
 			<property name="eclipselink.jdbc.timeout" value="60" />
+			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.MySQL" />
 		</properties>
 
 	</persistence-unit>
@@ -92,6 +93,7 @@
 			<property name="eclipselink.ddl-generation.output-mode"
 				value="database" />
 			<property name="eclipselink.jdbc.timeout" value="60" />
+			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.MySQL" />
 		</properties>
 
 	</persistence-unit>
