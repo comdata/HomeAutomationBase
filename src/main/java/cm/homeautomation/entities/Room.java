@@ -31,12 +31,15 @@ public class Room {
 	private List<Sensor> sensors;
 
 	@OneToMany(mappedBy="room", cascade=CascadeType.ALL)
+	@JsonManagedReference("room")
 	private List<Switch> switches;
 	
 	@OneToMany(mappedBy="room", cascade=CascadeType.ALL)
+	@JsonManagedReference("room")
 	private List<Device> devices;
 
 	@OneToMany(mappedBy="room", cascade=CascadeType.ALL)
+	@JsonManagedReference("room")
 	private List<Light> lights;
 	
 	@Column(name="VISIBLE")
@@ -46,6 +49,7 @@ public class Room {
 	private int sortOrder=0;
 	
 	@OneToMany(mappedBy="room", cascade=CascadeType.ALL)
+	@JsonManagedReference("room")
 	private List<RoomProperty> roomProperty;
 	
 	public String getRoomName() {
@@ -56,6 +60,7 @@ public class Room {
 		this.roomName = roomName;
 	}
 
+	@XmlIDREF
 	public List<Sensor> getSensors() {
 		if (sensors==null) {
 			sensors=new ArrayList<>();
@@ -75,7 +80,8 @@ public class Room {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
+	@XmlIDREF
 	public List<Switch> getSwitches() {
 		return switches;
 	}
@@ -84,6 +90,7 @@ public class Room {
 		this.switches = switches;
 	}
 
+	@XmlIDREF
 	public List<Device> getDevices() {
 		if (devices==null) {
 			devices=new ArrayList<>();
