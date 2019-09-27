@@ -8,9 +8,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import cm.homeautomation.entities.GasMeterPing;
-import cm.homeautomation.entities.PowerMeterPing;
-
 @JsonTypeInfo(use = JsonTypeInfo.Id.MINIMAL_CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@c")
 @JsonSubTypes({ @Type(value = IRData.class), @Type(value = AliveMessage.class),
 		@Type(value = SensorDataRoomSaveRequest.class), @Type(value = SensorDataSaveRequest.class),
