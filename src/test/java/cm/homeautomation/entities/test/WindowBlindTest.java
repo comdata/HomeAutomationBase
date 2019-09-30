@@ -3,7 +3,6 @@ package cm.homeautomation.entities.test;
 import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceException;
 import javax.persistence.RollbackException;
 
 import org.junit.After;
