@@ -12,7 +12,7 @@ public class SensorDatas {
 
 	public List<SensorValues> getSensorData() {
 		if (sensorData==null) {
-			sensorData=new ArrayList<SensorValues>();
+			sensorData=new ArrayList<>();
 		}
 		return sensorData;
 	}

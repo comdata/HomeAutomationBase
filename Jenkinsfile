@@ -43,16 +43,16 @@ pipeline {
             }
 
 		}
-   		stage('Sonarqube') {
-   			steps {
-				withMaven() {
-   				//org.jacoco:jacoco-maven-plugin:prepare-agent
-   		    	             sh '$MVN_CMD -DskipTests=true  sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.organization=homeautomation'
-				}
-			}
-   		}	
-//	    stage('Deploy') {
-//	       parallel {
+//   		stage('Sonarqube') {
+//   			steps {
+//				withMaven() {
+//   				//org.jacoco:jacoco-maven-plugin:prepare-agent
+//   		    	             sh '$MVN_CMD -DskipTests=true  sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.organization=homeautomation'
+//				}
+//			}
+//   		}	
+	    stage('Deploy') {
+	       parallel {
 //	      		 stage('JUnit') {
 //					steps {
 //						junit '**/target/surefire-reports/**/*.xml'  
@@ -63,13 +63,13 @@ pipeline {
 //	        			sh 'mvn deploy:deploy-file -Dfile=target/HomeAutomationBase-0.0.1-SNAPSHOT.jar -DpomFile=pom.xml -DrepositoryId=archiva.snapshots -Durl=http://jenkins:8081/repository/snapshots'
 //	   				}
 //	   			}
-//				stage('Archive') {
-//	   			    steps {
-//	   			        archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
-//	   			    	archiveArtifacts artifacts: '**/pom.xml', fingerprint: true
-//	   			    }	   			    
-//	   			}	  
-//	   		}	
-//	    }
+				stage('Archive') {
+	   			    steps {
+	   			        archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
+	   			    	archiveArtifacts artifacts: '**/pom.xml', fingerprint: true
+	   			    }	   			    
+	   			}	  
+	   		}	
+	    }
     }
 }

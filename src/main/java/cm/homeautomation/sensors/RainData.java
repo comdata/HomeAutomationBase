@@ -9,7 +9,7 @@ public class RainData extends JSONSensorDataBase {
 	private String mac;
 	
 	public RainData() {
-	
+		// nothing to do here
 	}
 
 	public int getRc() {

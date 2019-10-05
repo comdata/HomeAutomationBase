@@ -79,7 +79,7 @@ public class PanasonicTVBindingTest {
 
 		PanasonicTVBinding panasonicTVBinding = new PanasonicTVBinding();
 		int statusCode = panasonicTVBinding.sendCommand(tvIp, "HDMI");
-		assertEquals(statusCode, 200);
+		assertEquals(200, statusCode);
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class PanasonicTVBindingTest {
 
 		PanasonicTVBinding panasonicTVBinding = new PanasonicTVBinding();
 		int statusCode = panasonicTVBinding.sendCommand(null, "");
-		assertEquals(statusCode, 0);
+		assertEquals(0, statusCode);
 	}
 
 	

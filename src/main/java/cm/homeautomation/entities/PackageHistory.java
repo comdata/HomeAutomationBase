@@ -3,6 +3,7 @@ package cm.homeautomation.entities;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -23,8 +24,9 @@ public class PackageHistory {
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	@JsonIdentityReference(alwaysAsId = true)
 	@JsonBackReference("package")
-	@JoinColumn(updatable = false, insertable = false, name = "carrier", referencedColumnName = "carrier")
-	@JoinColumn(updatable = false, insertable = false, name = "trackingNumber", referencedColumnName = "trackingNumber")
+	@JoinColumns({
+			@JoinColumn(updatable = false, insertable = false, name = "carrier", referencedColumnName = "carrier"),
+			@JoinColumn(updatable = false, insertable = false, name = "trackingNumber", referencedColumnName = "trackingNumber") })
 	@ManyToOne
 	private Package trackedPackage;
 

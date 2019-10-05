@@ -1,5 +1,7 @@
 package cm.homeautomation.entities.test;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import javax.persistence.EntityManager;
 
 import org.junit.Before;
@@ -27,5 +29,7 @@ public class RoomTest {
 
 		em.persist(room);
 		em.getTransaction().commit();
+		
+		assertNotNull(room);
 	}
 }

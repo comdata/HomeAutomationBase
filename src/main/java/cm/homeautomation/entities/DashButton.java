@@ -7,8 +7,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+@XmlRootElement
 public class DashButton {
 
 	@Id
@@ -19,12 +26,21 @@ public class DashButton {
 	private String actionEvent;
 	private String name;
 
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+	@JsonIdentityReference(alwaysAsId = true)
+	@JsonBackReference("referencedSwitch")
 	@ManyToOne
 	private Switch referencedSwitch;
 
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+	@JsonIdentityReference(alwaysAsId = true)
+	@JsonBackReference("referencedScript")
 	@ManyToOne
 	private ScriptingEntity referencedScript;
 
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+	@JsonIdentityReference(alwaysAsId = true)
+	@JsonBackReference("referencedNetworkDevice")
 	@ManyToOne
 	private NetworkDevice referencedNetworkDevice;
 

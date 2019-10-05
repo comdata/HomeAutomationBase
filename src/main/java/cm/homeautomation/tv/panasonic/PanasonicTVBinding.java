@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -77,7 +78,7 @@ public class PanasonicTVBinding {
 		}
 		
 		try (Socket client = new Socket(tvIp, TV_PORT);
-				BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(client.getOutputStream(), "UTF8"));) {
+				BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(client.getOutputStream(), StandardCharsets.UTF_8));) {
 
 			String header = "POST /nrc/control_0/ HTTP/1.1\r\n";
 			header = header + "Host: " + tvIp + ":" + TV_PORT + "\r\n";

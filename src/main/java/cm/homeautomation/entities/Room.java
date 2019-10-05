@@ -3,17 +3,13 @@ package cm.homeautomation.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlIDREF;
 
@@ -35,12 +31,15 @@ public class Room {
 	private List<Sensor> sensors;
 
 	@OneToMany(mappedBy="room", cascade=CascadeType.ALL)
+	@JsonManagedReference("room")
 	private List<Switch> switches;
 	
 	@OneToMany(mappedBy="room", cascade=CascadeType.ALL)
+	@JsonManagedReference("room")
 	private List<Device> devices;
 
 	@OneToMany(mappedBy="room", cascade=CascadeType.ALL)
+	@JsonManagedReference("room")
 	private List<Light> lights;
 	
 	@Column(name="VISIBLE")
@@ -49,12 +48,9 @@ public class Room {
 	@Column(name="SORT_ORDER")
 	private int sortOrder=0;
 	
-	@ElementCollection 
-	@CollectionTable(
-	        name="ROOM_PROPERTIES", 
-	        joinColumns=@JoinColumn())
-	@Column(name="ROOM_PROPERTY")
-	private Map<String, String> roomProperties;
+	@OneToMany(mappedBy="room", cascade=CascadeType.ALL)
+	@JsonManagedReference("room")
+	private List<RoomProperty> roomProperty;
 	
 	public String getRoomName() {
 		return roomName;
@@ -64,6 +60,7 @@ public class Room {
 		this.roomName = roomName;
 	}
 
+	@XmlIDREF
 	public List<Sensor> getSensors() {
 		if (sensors==null) {
 			sensors=new ArrayList<>();
@@ -83,7 +80,8 @@ public class Room {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
+	@XmlIDREF
 	public List<Switch> getSwitches() {
 		return switches;
 	}
@@ -92,9 +90,10 @@ public class Room {
 		this.switches = switches;
 	}
 
+	@XmlIDREF
 	public List<Device> getDevices() {
 		if (devices==null) {
-			devices=new ArrayList<Device>();
+			devices=new ArrayList<>();
 		}
 		
 		return devices;
@@ -107,7 +106,7 @@ public class Room {
 	@XmlIDREF
 	public List<Light> getLights() {
 		if (lights==null) {
-			lights=new ArrayList<Light>();
+			lights=new ArrayList<>();
 		}
 		
 		return lights;
@@ -141,11 +140,14 @@ public class Room {
 		this.visible = visible;
 	}
 
-	public Map<String, String> getRoomProperties() {
-		return roomProperties;
+	@XmlIDREF
+	public List<RoomProperty> getRoomProperty() {
+		return roomProperty;
 	}
 
-	public void setRoomProperties(Map<String, String> roomProperties) {
-		this.roomProperties = roomProperties;
+	@XmlIDREF
+	public void setRoomProperty(List<RoomProperty> roomProperty) {
+		this.roomProperty = roomProperty;
 	}
+
 }
