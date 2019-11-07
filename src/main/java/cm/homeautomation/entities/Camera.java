@@ -12,90 +12,82 @@ import javax.xml.bind.annotation.XmlTransient;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 public class Camera {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@JsonBackReference("room")
-	@ManyToOne
-	@JoinColumn(name = "ROOM_ID", nullable = false)
-	@EdmIgnore
-	private Room room;
+    @JsonBackReference("room")
+    @ManyToOne
+    @JoinColumn(name = "ROOM_ID", nullable = false)
+    @EdmIgnore
+    private Room room;
 
-	@Column(nullable=false, unique=true)
-	private String cameraName;
-	
-	private String icon;
-	private String stream;
-	@XmlTransient
-	@JsonIgnore
-	private byte[] imageSnapshot;
-	
-	private boolean enabled=true;
+    @Column(nullable = false, unique = true)
+    private String cameraName;
 
-	public String getCameraName() {
-		return cameraName;
-	}
+    @Getter
+    @Setter
+    private String icon;
 
-	public void setCameraName(String cameraName) {
-		this.cameraName = cameraName;
-	}
+    @Getter
+    @Setter
+    private String stream;
+    @XmlTransient
+    @JsonIgnore
+    private byte[] imageSnapshot;
 
-	@XmlTransient
-	@JsonIgnore
-	@JsonBackReference("room")
-	public Room getRoom() {
-		return room;
-	}
+    private boolean enabled = true;
 
-	public void setRoom(Room room) {
-		this.room = room;
-	}
+    public String getCameraName() {
+        return cameraName;
+    }
 
-	public String getStream() {
-		return stream;
-	}
+    public void setCameraName(String cameraName) {
+        this.cameraName = cameraName;
+    }
 
-	public void setStream(String stream) {
-		this.stream = stream;
-	}
+    @XmlTransient
+    @JsonIgnore
+    @JsonBackReference("room")
+    public Room getRoom() {
+        return room;
+    }
 
-	public String getIcon() {
-		return icon;
-	}
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	@JsonIgnore
-	@XmlTransient
-	public byte[] getImageSnapshot() {
-		return imageSnapshot;
-	}
+    @JsonIgnore
+    @XmlTransient
+    public byte[] getImageSnapshot() {
+        return imageSnapshot;
+    }
 
-	public void setImageSnapshot(byte[] imageSnapshot) {
-		this.imageSnapshot = imageSnapshot;
-	}
+    public void setImageSnapshot(byte[] imageSnapshot) {
+        this.imageSnapshot = imageSnapshot;
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public boolean isEnabled() {
+        return enabled;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
 }
