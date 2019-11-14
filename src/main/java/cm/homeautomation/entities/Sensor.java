@@ -24,23 +24,49 @@ import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 @Entity
 public class Sensor {
 
+    @Getter
+    @Setter    
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+    @Getter
+    @Setter    
 	@Column(name = "SENSORNAME", nullable = false)
-	private String sensorName;
-	private String sensorType;
-	private String sensorPin;
-	private String sensorTechnicalType;
-	private String sensorPosition = "LOCAL";
+    private String sensorName;
+    
+    @Getter
+    @Setter
+    private String sensorType;
+    
+    @Getter
+    @Setter    
+    private String sensorPin;
+    
+    @Getter
+    @Setter    
+    private String sensorTechnicalType;
+    
+    @Getter
+    @Setter    
+    private String sensorPosition = "LOCAL";
+
+    @Getter
+    @Setter
 	private int deadbandPercent = 0;
-	
+    
+    @Getter
+    @Setter    
 	@Column(name = "MIN_VALUE", nullable = true)
-	private String minValue;
+    private String minValue;
+
+    @Getter
+    @Setter
 	@Column(name = "MAX_VALUE", nullable = true)
 	private String maxValue;
 
+    @Getter
+    @Setter    
 	@Column(name = "SHOWDATA")
 	private boolean showData;
 
@@ -52,16 +78,10 @@ public class Sensor {
 	@EdmIgnore
 	private Room room;
 
-	@OneToMany(mappedBy = "sensor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Getter
+    @Setter    
+    @OneToMany(mappedBy = "sensor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<SensorData> sensorData;
-
-	public int getDeadbandPercent() {
-		return deadbandPercent;
-	}
-
-	public Long getId() {
-		return id;
-	}
 
 	@XmlTransient
 	@JsonIgnore
@@ -69,81 +89,4 @@ public class Sensor {
 	public Room getRoom() {
 		return room;
 	}
-
-	public String getSensorName() {
-		return sensorName;
-	}
-
-	public String getSensorPin() {
-		return sensorPin;
-	}
-
-	public String getSensorPosition() {
-		return sensorPosition;
-	}
-
-	public String getSensorTechnicalType() {
-		return sensorTechnicalType;
-	}
-
-	public String getSensorType() {
-		return sensorType;
-	}
-
-	public boolean isShowData() {
-		return showData;
-	}
-
-	public void setDeadbandPercent(int deadbandPercent) {
-		this.deadbandPercent = deadbandPercent;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setRoom(Room room) {
-		this.room = room;
-	}
-
-	public void setSensorName(String sensorName) {
-		this.sensorName = sensorName;
-	}
-
-	public void setSensorPin(String sensorPin) {
-		this.sensorPin = sensorPin;
-	}
-
-	public void setSensorPosition(String sensorPosition) {
-		this.sensorPosition = sensorPosition;
-	}
-
-	public void setSensorTechnicalType(String sensorTechnicalType) {
-		this.sensorTechnicalType = sensorTechnicalType;
-	}
-
-	public void setSensorType(String sensorType) {
-		this.sensorType = sensorType;
-	}
-
-	public void setShowData(boolean showData) {
-		this.showData = showData;
-	}
-
-	public String getMinValue() {
-		return minValue;
-	}
-
-	public void setMinValue(String minValue) {
-		this.minValue = minValue;
-	}
-
-	public String getMaxValue() {
-		return maxValue;
-	}
-
-	public void setMaxValue(String maxValue) {
-		this.maxValue = maxValue;
-	}
-
 }

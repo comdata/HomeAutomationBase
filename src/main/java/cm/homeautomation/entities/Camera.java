@@ -20,6 +20,8 @@ public class Camera {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
     private Long id;
 
     @JsonBackReference("room")
@@ -42,6 +44,8 @@ public class Camera {
     @JsonIgnore
     private byte[] imageSnapshot;
 
+    @Getter
+    @Setter
     private boolean enabled = true;
 
     public String getCameraName() {
@@ -63,15 +67,6 @@ public class Camera {
         this.room = room;
     }
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @JsonIgnore
     @XmlTransient
     public byte[] getImageSnapshot() {
@@ -80,14 +75,6 @@ public class Camera {
 
     public void setImageSnapshot(byte[] imageSnapshot) {
         this.imageSnapshot = imageSnapshot;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
 }
