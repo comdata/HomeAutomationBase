@@ -21,6 +21,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 public class Sensor {
 

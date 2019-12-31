@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@class")
 @JsonSubTypes({ @JsonSubTypes.Type(value = RGBLight.class, name = "RGBLight"),
 		@JsonSubTypes.Type(value = DimmableColorLight.class, name = "DimmableColorLight") })
