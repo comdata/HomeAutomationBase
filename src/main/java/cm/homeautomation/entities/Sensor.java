@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
@@ -84,6 +85,7 @@ public class Sensor {
     @Getter
     @Setter    
     @OneToMany(mappedBy = "sensor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
 	private List<SensorData> sensorData;
 
 	@XmlTransient

@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
@@ -29,6 +30,7 @@ public class SensorData {
 	@JoinColumn(name = "SENSOR_ID", nullable = false)
 	@EdmIgnore
 	@JsonIdentityReference
+	@JsonBackReference
 	private Sensor sensor;
 
 	private Date dateTime = new Date();
@@ -52,6 +54,7 @@ public class SensorData {
 	}
 
 	@JsonIdentityReference
+	@JsonBackReference
 	public Sensor getSensor() {
 		return sensor;
 	}
