@@ -1,3 +1,4 @@
+
 package cm.homeautomation.entities;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.sap.olingo.jpa.metadata.core.edm.annotation.EdmIgnore;
 
 @Entity
@@ -26,6 +28,7 @@ public class SensorData {
 	@ManyToOne
 	@JoinColumn(name = "SENSOR_ID", nullable = false)
 	@EdmIgnore
+	@JsonIdentityReference
 	private Sensor sensor;
 
 	private Date dateTime = new Date();
@@ -48,6 +51,7 @@ public class SensorData {
 		this.dateTime = dateTime;
 	}
 
+	@JsonIdentityReference
 	public Sensor getSensor() {
 		return sensor;
 	}
