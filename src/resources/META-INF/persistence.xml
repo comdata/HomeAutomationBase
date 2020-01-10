@@ -48,6 +48,7 @@
 		<class>cm.homeautomation.entities.SchedulingEntity</class>
 		<class>cm.homeautomation.entities.RoomProperty</class>
 		<class>cm.homeautomation.entities.MQTTSwitch</class>
+		<class>cm.homeautomation.entities.MQTTTopic</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url"
